@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Trash2, PlusCircle } from "lucide-react"
 import { ExpandIcon } from "@/components/ui/expand-icon"
 import { ConditionRow } from "./condition-row"
-import type { Channel, ConditionGroup, Condition } from "@/types"
+import type { Channel, Condition } from "@/types"
 
 interface ChannelCardProps {
   channel: Channel
@@ -27,10 +27,22 @@ interface ChannelCardProps {
   removeCondition: (channelId: string, groupId: string, conditionId: string) => void
 }
 
-export const ChannelCard: React.FC<ChannelCardProps> = ({
-  channel, isExpanded, toggleExpand, channelsLength, handleDeleteChannel, updateChannelName, updateChannelGroupOperator,
-  removeConditionGroup, addCondition, addConditionGroup, availableProperties, updateCondition, updateConditionGroupOperator, removeCondition
-}) => {
+export function ChannelCard({
+  channel, 
+  isExpanded, 
+  toggleExpand, 
+  channelsLength, 
+  handleDeleteChannel, 
+  updateChannelName, 
+  updateChannelGroupOperator,
+  removeConditionGroup, 
+  addCondition, 
+  addConditionGroup, 
+  availableProperties, 
+  updateCondition, 
+  updateConditionGroupOperator, 
+  removeCondition
+}: ChannelCardProps) {
   const totalConditions = channel.conditionGroups.reduce((total, group) => total + group.conditions.length, 0)
   return (
     <div className="border rounded-md overflow-hidden">

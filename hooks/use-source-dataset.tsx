@@ -12,7 +12,7 @@ export function useSourceDataset() {
 
   const fetchSourceDataset = async () => {
     try {
-      const response = await fetch("/api/dataset")
+      const response = await fetch("/api/get-dataset")
       const data = await response.json()
 
       if (data.success) {

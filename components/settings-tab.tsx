@@ -45,7 +45,6 @@ export function SettingsTab({
 }: SettingsTabProps) {
   return (
     <TabsContent value="settings" className="space-y-6">
-      {/* General Settings */}
       <Card>
         <CardHeader>
           <CardTitle>General Settings</CardTitle>

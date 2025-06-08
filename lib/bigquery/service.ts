@@ -23,13 +23,12 @@ export async function executeBigQuery(params: BigQueryExecutionParams): Promise<
   }
 
   try {
-    // Generate unique table name
     const timestamp = Date.now()
 
     const destinationTable = {
       projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
       datasetId: destinationDatasetId,
-      tableId: `query_result_${timestamp}`,
+      tableId: `output_${timestamp}`,
     };
 
     await bigquery.createQueryJob({

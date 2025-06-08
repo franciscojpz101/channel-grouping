@@ -8,7 +8,6 @@ export async function POST(request: NextRequest) {
     const params: QueryExecutionParams = await request.json()
     const { query, sourceDatasetId, destinationDatasetId, groupingConfig } = params
 
-    // Execute query in BigQuery
     const queryResult = await executeBigQuery({
       query,
       sourceDatasetId,
@@ -17,7 +16,6 @@ export async function POST(request: NextRequest) {
 
     if (queryResult.destinationTable) {
       try {
-        // const destination_dataset = `${queryResult.destinationDataset}.${queryResult.destinationTable}`
         const destination_dataset = {
           datasetId: queryResult.destinationDataset,
           tableId: queryResult.destinationTable,

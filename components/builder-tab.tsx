@@ -41,7 +41,6 @@ export function BuilderTab({
     [customProperties]
   )
 
-  // Memoized handlers
   const handleDeleteChannel = useCallback(
     (channelId: string) => setChannelToDelete(channelId),
     [setChannelToDelete]
@@ -223,7 +222,7 @@ export function BuilderTab({
 
   return (
     <TabsContent value="builder" className="space-y-6">
-      <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center justify-between mb-4 max-sm:flex-col max-sm:space-y-2 max-sm:items-start">
         <div className="flex items-center space-x-2">
           <Label htmlFor="advanced-mode">Advanced Mode</Label>
           <Switch id="advanced-mode" checked={showAdvanced} onCheckedChange={setShowAdvanced} />
@@ -242,7 +241,7 @@ export function BuilderTab({
             </Tooltip>
           </TooltipProvider>
         </div>
-        <div className="flex space-x-2">
+        <div className="flex space-x-2 max-sm:w-full max-sm:justify-around flex-wrap">
           <Button onClick={handleGenerateCode}>Generate Mixpanel Code</Button>
           <Button onClick={handleGenerateSql} variant="outline" disabled={sourceDatasetLoading}>
             Generate SQL Code

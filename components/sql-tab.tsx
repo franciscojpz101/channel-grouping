@@ -51,7 +51,7 @@ export function SqlTab({ generatedSql, sourceDataset, groupingConfig }: SqlTabPr
       duration: Infinity,
     })
     try {
-      const result = await executeQuery({
+      await executeQuery({
         query: generatedSql,
         sourceDatasetId: sourceDataset,
         destinationDatasetId: destinationDataset,
@@ -75,14 +75,14 @@ export function SqlTab({ generatedSql, sourceDataset, groupingConfig }: SqlTabPr
     <TabsContent value="sql">
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between max-sm:flex-col max-sm:space-y-5">
             <CardTitle>SQL Code</CardTitle>
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-4 max-sm:w-full">
               <Input
                 value={destinationDataset}
                 onChange={(e) => setDestinationDataset(e.target.value)}
                 placeholder="Input destination dataset ID *"
-                className="w-[220px]"
+                className="w-[220px] max-sm:w-full"
               />
               <Button
                 variant="default"

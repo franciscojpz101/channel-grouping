@@ -36,7 +36,7 @@ interface ConditionRowProps {
   ) => void
 }
 
-export const ConditionRow: React.FC<ConditionRowProps> = ({
+export const ConditionRow = ({
   channelId,
   group,
   condition,
@@ -45,7 +45,7 @@ export const ConditionRow: React.FC<ConditionRowProps> = ({
   updateCondition,
   updateConditionGroupOperator,
   removeCondition,
-}) => (
+} : ConditionRowProps) => (
   <div className="flex items-center space-x-2">
     <Select
       value={condition.property}

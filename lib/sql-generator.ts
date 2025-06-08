@@ -22,13 +22,6 @@ export function generateSqlCode(
   uncategorizedChannelName = "Other",
   sourceDataset: string,
 ): string {
-  console.log("channels===", channels)
-  console.log("searchEngines===", searchEngines)
-  console.log("socialSites===", socialSites)
-  console.log("paidChannelMediums===", paidChannelMediums)
-  console.log("customProperties===", customProperties)
-  console.log("uncategorizedChannelName===", uncategorizedChannelName)
-  console.log("sourceDataset===", sourceDataset)
 
   // Build variable arrays for SQL
   const enabledSearchEngines = searchEngines.filter((item) => item.enabled).map((item) => `'${item.value}'`)

@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react"
 import { Settings } from "lucide-react"
 
-// External UI components
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Alert } from "@/components/alert"
 import { BuilderTab } from "@/components/builder-tab"
@@ -11,7 +10,6 @@ import { CodeTab } from "@/components/code-tab"
 import { SqlTab } from "@/components/sql-tab"
 import { SettingsTab } from "@/components/settings-tab"
 
-// Internal logic and data
 import { generateMixpanelCode } from "@/lib/code-generator"
 import { generateSqlCode } from "@/lib/sql-generator"
 import { createVariableItems, createExcludedEvents, createCustomProperties } from "@/lib/utils"
@@ -25,14 +23,11 @@ import {
 } from "@/data/default-variables"
 import { getDefaultChannels } from "@/data/default-channels"
 import type { Channel, CustomProperty } from "@/types"
-import { channel } from "diagnostics_channel"
 
-const MixpanelRuleGenerator: React.FC = () => {
-  // 1. Primitive UI state
+export default function MixpanelRuleGenerator() {
   const [activeTab, setActiveTab] = useState("builder")
   const [showAdvanced, setShowAdvanced] = useState(true)
 
-  // 2. Domain data
   const [channels, setChannels] = useState<Channel[]>(getDefaultChannels)
   const [uncategorizedChannelName, setUncategorizedChannelName] = useState("Other")
   const [searchEngines, setSearchEngines] = useState(createVariableItems(defaultSearchEngines))
@@ -50,11 +45,9 @@ const MixpanelRuleGenerator: React.FC = () => {
     customProperties,
   })
 
-  // 3. Derived/generated data
   const [generatedSql, setGeneratedSql] = useState("")
   const [generatedCode, setGeneratedCode] = useState("")
 
-  // 4. Temporary/ephemeral state
   const [channelToDelete, setChannelToDelete] = useState<string | null>(null)
 
   useEffect(() => {
@@ -136,17 +129,17 @@ const MixpanelRuleGenerator: React.FC = () => {
   ])
 
   return (
-    <div className="container mx-auto py-8 xl:max-w-6xl px-10">
+    <div className="container mx-auto py-8 xl:max-w-6xl px-5 md:px-10 sm:w-full">
       <h1 className="text-3xl font-bold mb-6">Channel Grouping</h1>
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="mb-4">
-          <TabsTrigger value="builder">Rule Builder</TabsTrigger>
-          <TabsTrigger value="settings">
+        <TabsList className="mb-4 max-sm:flex max-sm:flex-col max-sm:h-auto">
+          <TabsTrigger className="w-full" value="builder">Rule Builder</TabsTrigger>
+          <TabsTrigger className="w-full" value="settings">
             <Settings className="h-4 w-4 mr-2" />
             Settings
           </TabsTrigger>
-          <TabsTrigger value="code">Mixpanel Custom Event Code</TabsTrigger>
-          <TabsTrigger value="sql">SQL Code</TabsTrigger>
+          <TabsTrigger className="w-full" value="code">Mixpanel Custom Event Code</TabsTrigger>
+          <TabsTrigger className="w-full" value="sql">SQL Code</TabsTrigger>
         </TabsList>
 
         <BuilderTab
@@ -186,5 +179,3 @@ const MixpanelRuleGenerator: React.FC = () => {
     </div>
   )
 }
-
-export default MixpanelRuleGenerator
